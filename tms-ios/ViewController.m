@@ -57,6 +57,8 @@
 @property (strong, nonatomic) UIView *videoView;
 // 连续扫码时，中途延时了0.8秒，导致关闭扫码时，0.8秒后自动打开扫码bug。用这个方法解决问题
 @property (assign, nonatomic) BOOL is_stop_scan;
+// 扫码UI高度
+@property (assign, nonatomic) CGFloat scan_height;
 /***************   扫码组件结束   *************/
 
 @end
@@ -118,6 +120,7 @@
     
     
     /***************   扫码组件开始   *************/
+    _scan_height = 170;
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -1046,7 +1049,7 @@
         if (@available(iOS 11.0,*)) {
             margin_top = self.view.safeAreaInsets.top + 45;
         }
-        self.qRScanView = [[LBXScanView alloc]initWithFrame:CGRectMake(0, margin_top, ScreenWidth, 170) style:_style];
+        self.qRScanView = [[LBXScanView alloc]initWithFrame:CGRectMake(0, margin_top, ScreenWidth, _scan_height) style:_style];
         self.qRScanView.alpha = 0;
         [self.view addSubview:_qRScanView];
         [self.qRScanView setAlpha:0];
@@ -1099,7 +1102,7 @@
         if (@available(iOS 11.0,*)) {
             margin_top = self.view.safeAreaInsets.top + 45;
         }
-        _videoView = [[UIView alloc]initWithFrame:CGRectMake(0, margin_top, ScreenWidth, 170)];
+        _videoView = [[UIView alloc]initWithFrame:CGRectMake(0, margin_top, ScreenWidth, _scan_height)];
         _videoView.alpha = 0;
     }
     _videoView.backgroundColor = [UIColor clearColor];

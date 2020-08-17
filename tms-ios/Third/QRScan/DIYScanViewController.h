@@ -6,8 +6,7 @@
 //  Copyright © 2017年 lbx. All rights reserved.
 //
 
-
-#import "LBXScanViewController.h"
+#import <LBXScanViewController.h>
 
 @interface DIYScanViewController : LBXScanViewController
 

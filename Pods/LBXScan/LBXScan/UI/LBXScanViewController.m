@@ -59,7 +59,7 @@
         }else{
 
 #ifdef LBXScan_Define_UI
-            [_qRScanView stopDeviceReadying];
+            [self.qRScanView stopDeviceReadying];
 #endif
 
         }
@@ -304,7 +304,7 @@
 - (void)scanResultWithArray:(NSArray<LBXScanResult*>*)array
 {
     //设置了委托的处理
-    if (_delegate) {
+    if (_delegate && array && array.count > 0) {
         [_delegate scanResultWithArray:array];
     }
     

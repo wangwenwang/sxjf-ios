@@ -21,6 +21,8 @@
         _sharedInstance = [[Global alloc] init];
         _sharedInstance.libraryType = SLT_Native;
         _sharedInstance.scanCodeType = SCT_QRCode;
+        _sharedInstance.libraryTypa = SLT_Native;
+        _sharedInstance.scanCodeTypa = SCT_QRCode;
     });
     
     return _sharedInstance;

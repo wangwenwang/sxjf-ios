@@ -39,10 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,strong,nullable)UILabel *labelReadying;
 
-@property (nonatomic, strong) UILabel *promptLabel;
-
-@property (nonatomic, strong) UIButton *backBtn;
-
 @end
 
 NS_ASSUME_NONNULL_END
@@ -64,44 +60,7 @@ NS_ASSUME_NONNULL_END
 - (void)drawRect:(CGRect)rect
 {
     [self drawScanRect];
-    
-    [self addSubview:self.promptLabel];
-    // 返回按钮
-    [self addSubview:self.backBtn];
 }
-
-
-
-- (UILabel *)promptLabel {
-    if (!_promptLabel) {
-        _promptLabel = [[UILabel alloc] init];
-        _promptLabel.backgroundColor = [UIColor clearColor];
-        CGFloat promptLabelX = 0;
-        CGFloat promptLabelY = 0.73 * self.frame.size.height;
-        CGFloat promptLabelW = self.frame.size.width;
-        CGFloat promptLabelH = 25;
-        _promptLabel.frame = CGRectMake(promptLabelX, promptLabelY, promptLabelW, promptLabelH);
-        _promptLabel.textAlignment = NSTextAlignmentCenter;
-        _promptLabel.font = [UIFont boldSystemFontOfSize:13.0];
-        _promptLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-        _promptLabel.text = @"将二维码/条码放入框内, 即可自动扫描";
-    }
-    return _promptLabel;
-}
-
-- (UIButton *)backBtn {
-    
-    if(!_backBtn) {
-        
-        _backBtn = [[UIButton alloc] init];
-        [_backBtn setFrame:CGRectMake(CGRectGetMaxX(self.frame) - 60, 60, 40, 40)];
-        [_backBtn setImage:[UIImage imageNamed:@"btn_dismiss"] forState:UIControlStateNormal];
-        _backBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [_backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _backBtn;
-}
-
 - (void)startDeviceReadyingWithText:(NSString*)text
 {
     int XRetangleLeft = _viewStyle.xScanRetangleOffset;
@@ -506,11 +465,5 @@ NS_ASSUME_NONNULL_END
     return cropRect;
 }
 
-#pragma mark - 函数
-
-- (void)dismiss {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Receive_dismiss_Notification" object:nil userInfo:@{@"dismiss":@"a"}];
-}
 
 @end

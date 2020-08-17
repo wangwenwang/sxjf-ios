@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LBXScanViewController.h"
+#import <LBXScanViewController.h>
+#import "ViewController.h"
 
 
 @interface Global : NSObject
@@ -15,6 +16,10 @@
 @property (nonatomic, assign) SCANLIBRARYTYPE libraryType;
 ////当前选择的识别码制
 @property (nonatomic, assign) SCANCODETYPE scanCodeType;
+////当前选择的扫码库
+@property (nonatomic, assign) SCANLIBRARYTYPA libraryTypa;
+////当前选择的识别码制
+@property (nonatomic, assign) SCANCODETYPA scanCodeTypa;
 
 + (instancetype)sharedManager;
 

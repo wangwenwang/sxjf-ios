@@ -86,6 +86,17 @@
             NSLog(@"error = %@ , response = %@",error, resp);
         }];
         
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"scan_code_success.wav" ofType:nil];
+        if (!path) {
+            /// 动态库 path 的获取
+            path = [[NSBundle bundleForClass:[self class]] pathForResource:@"scan_code_success.wav" ofType:nil];
+        }
+        NSURL *fileUrl = [NSURL fileURLWithPath:path];
+        SystemSoundID soundID = 0;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)(fileUrl), &soundID);
+        AudioServicesPlaySystemSound(soundID);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
